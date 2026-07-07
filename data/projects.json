@@ -1,0 +1,145 @@
+[
+  {
+    "id": "p5",
+    "name": "Xedu AI",
+    "year": "2026",
+    "tags": [
+      "CRM",
+      "LMS",
+      "ERP",
+      "Mobile",
+      "Gamification",
+      "OS"
+    ],
+    "cat": {
+      "uz": "EdTech",
+      "en": "EdTech",
+      "ru": "EdTech"
+    },
+    "desc": {
+      "uz": "Maktab va o'quv markazlari uchun LMS: interaktiv darslar, ota-onalar uchun hisobotlar va gamifikatsiyalangan testlar.",
+      "en": "An LMS for schools and learning centers: interactive lessons, parent reports and gamified assessments.",
+      "ru": "LMS для школ и учебных центров: интерактивные уроки, отчёты для родителей и геймифицированные тесты."
+    },
+    "stat": {
+      "v": "120K",
+      "l": {
+        "uz": "o'quvchi",
+        "en": "students",
+        "ru": "учеников"
+      }
+    }
+  },
+  {
+    "id": "p1",
+    "name": "Zamin AI",
+    "year": "2025",
+    "tags": [
+      "LLM",
+      "RAG",
+      "Fintech"
+    ],
+    "cat": {
+      "uz": "AI platforma",
+      "en": "AI Platform",
+      "ru": "AI-платформа"
+    },
+    "desc": {
+      "uz": "Banklar uchun o'zbek tilida so'zlashuvchi AI yordamchi. RAG arxitekturasi, ovozli qo'ng'iroqlar va CRM integratsiyasi — operatorlar yuki 40% ga kamaydi.",
+      "en": "An Uzbek-speaking AI assistant for banks. RAG architecture, voice calls and CRM integration — operator workload cut by 40%.",
+      "ru": "AI-ассистент для банков, говорящий на узбекском. RAG-архитектура, голосовые звонки и интеграция с CRM — нагрузка на операторов снижена на 40%."
+    },
+    "stat": {
+      "v": "1.2M",
+      "l": {
+        "uz": "so'rov / oy",
+        "en": "requests / mo",
+        "ru": "запросов / мес"
+      }
+    }
+  },
+  {
+    "id": "p2",
+    "name": "Orzu Market",
+    "year": "2024",
+    "tags": [
+      "Next.js",
+      "Highload",
+      "Payments"
+    ],
+    "cat": {
+      "uz": "E-commerce",
+      "en": "E-commerce",
+      "ru": "E-commerce"
+    },
+    "desc": {
+      "uz": "Kuniga yuz minglab buyurtmani ko'taradigan highload marketplace. Real-time qidiruv, aqlli tavsiyalar va 300 ms dan tez ochiladigan sahifalar.",
+      "en": "A high-load marketplace handling hundreds of thousands of orders daily. Real-time search, smart recommendations and sub-300 ms pages.",
+      "ru": "Высоконагруженный маркетплейс, обрабатывающий сотни тысяч заказов в день. Real-time поиск, умные рекомендации и страницы быстрее 300 мс."
+    },
+    "stat": {
+      "v": "500K+",
+      "l": {
+        "uz": "faol xaridor",
+        "en": "active buyers",
+        "ru": "покупателей"
+      }
+    }
+  },
+  {
+    "id": "p3",
+    "name": "Shifo24",
+    "year": "2024",
+    "tags": [
+      "Mobile",
+      "WebRTC",
+      "Telemed"
+    ],
+    "cat": {
+      "uz": "HealthTech",
+      "en": "HealthTech",
+      "ru": "HealthTech"
+    },
+    "desc": {
+      "uz": "Telemeditsina platformasi: video-konsultatsiyalar, elektron retseptlar va navbatsiz shifokor qabuli — barchasi bitta ilovada.",
+      "en": "A telemedicine platform: video consultations, e-prescriptions and queue-free doctor appointments — all in one app.",
+      "ru": "Платформа телемедицины: видеоконсультации, электронные рецепты и приём врача без очередей — всё в одном приложении."
+    },
+    "stat": {
+      "v": "200+",
+      "l": {
+        "uz": "klinika",
+        "en": "clinics",
+        "ru": "клиник"
+      }
+    }
+  },
+  {
+    "id": "p4",
+    "name": "Sarbon TMS",
+    "year": "2023",
+    "tags": [
+      "ERP",
+      "GPS",
+      "AI Routing"
+    ],
+    "cat": {
+      "uz": "Logistika",
+      "en": "Logistics",
+      "ru": "Логистика"
+    },
+    "desc": {
+      "uz": "Yuk tashish kompaniyalari uchun boshqaruv tizimi: GPS-monitoring, AI asosida marshrut optimizatsiyasi va avtomatik hujjat aylanmasi.",
+      "en": "A management system for freight companies: GPS monitoring, AI-driven route optimization and automated document flow.",
+      "ru": "Система управления для грузоперевозчиков: GPS-мониторинг, AI-оптимизация маршрутов и автоматический документооборот."
+    },
+    "stat": {
+      "v": "8K+",
+      "l": {
+        "uz": "transport birligi",
+        "en": "vehicles",
+        "ru": "единиц транспорта"
+      }
+    }
+  }
+]

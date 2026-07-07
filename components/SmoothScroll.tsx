@@ -7,7 +7,9 @@ export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    // higher lerp = tighter catch-up: if a frame is ever dropped, the scroll
+    // recovers in a couple of frames instead of visibly rubber-banding
+    const lenis = new Lenis({ lerp: 0.14, smoothWheel: true });
     let rafId: number;
     const raf = (time: number) => {
       lenis.raf(time);

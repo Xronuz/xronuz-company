@@ -13,14 +13,10 @@ function Word({
   progress: MotionValue<number>;
   range: [number, number];
 }) {
+  // opacity only — animating color repaints every word on each scroll frame
   const opacity = useTransform(progress, range, [0.14, 1]);
-  const color = useTransform(
-    progress,
-    [range[0], range[1]],
-    ["oklch(30% 0.03 168)", "oklch(96% 0.008 160)"]
-  );
   return (
-    <motion.span className="w" style={{ opacity, color }}>
+    <motion.span className="w" style={{ opacity }}>
       {children}
     </motion.span>
   );
@@ -39,7 +35,7 @@ export default function Manifesto() {
   return (
     <section className="section" id="manifesto">
       <div className="section-head">
-        <span className="mono-label">02 / {t.about.label}</span>
+        <span className="mono-label">03 / {t.about.label}</span>
         <span className="mono-dim">XRONUZ — {new Date().getFullYear()}</span>
       </div>
       <div className="manifesto" ref={ref} key={lang}>

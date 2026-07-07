@@ -10,10 +10,19 @@ export interface ServiceItem {
   tags: string[];
 }
 
+export interface ProjectItem {
+  name: string;
+  cat: string;
+  year: string;
+  desc: string;
+  stat: { v: string; l: string };
+  tags: string[];
+}
+
 export interface Dict {
   metaTitle: string;
-  nav: { menu: string; close: string; links: [string, string, string, string]; cta: string };
-  menu: { contact: string; language: string; socials: string };
+  nav: { menu: string; close: string; links: [string, string, string, string, string]; cta: string };
+  menu: { contact: string; language: string; socials: string; theme: string };
   hero: {
     eyebrow: string;
     l1: string;
@@ -25,6 +34,7 @@ export interface Dict {
     stats: { v: string; l: string }[];
   };
   services: { label: string; title: string; hint: string; items: ServiceItem[] };
+  projects: { label: string; title: string; hint: string; view: string; all: string; items: ProjectItem[] };
   about: { label: string; manifesto: string };
   process: { label: string; title: string; steps: { t: string; d: string }[] };
   cta: { label: string; title1: string; title2: string; sub: string; btn: string };
@@ -36,10 +46,10 @@ const uz: Dict = {
   nav: {
     menu: "Menyu",
     close: "Yopish",
-    links: ["Xizmatlar", "Manifest", "Jarayon", "Aloqa"],
+    links: ["Xizmatlar", "Loyihalar", "Manifest", "Jarayon", "Aloqa"],
     cta: "Loyihani boshlash",
   },
-  menu: { contact: "Aloqa", language: "Til", socials: "Ijtimoiy tarmoqlar" },
+  menu: { contact: "Aloqa", language: "Til", socials: "Ijtimoiy tarmoqlar", theme: "Rejim" },
   hero: {
     eyebrow: "IT & AI STUDIO — TOSHKENT",
     l1: "Kelajakni",
@@ -67,6 +77,20 @@ const uz: Dict = {
       { title: "Cloud & DevOps", desc: "Avtomatlashtirilgan infratuzilma, CI/CD va 99.9% uptime. Mahsulotingiz har qanday yuklamada barqaror ishlaydi.", tags: ["AWS", "Kubernetes", "CI/CD"] },
       { title: "Kiberxavfsizlik", desc: "Xavfsizlik auditi, penetration testing va raqamli aktivlarni himoya qilish. Xavf yuzaga kelishidan oldin bartaraf etamiz.", tags: ["Pentest", "Audit", "Himoya"] },
       { title: "IT konsalting", desc: "Texnologik strategiya, arxitektura tanlash va raqamli transformatsiya bo'yicha ekspert maslahatlar.", tags: ["Strategiya", "Arxitektura", "Audit"] },
+    ],
+  },
+  projects: {
+    label: "Loyihalar",
+    title: "Bizning loyihalarimiz",
+    hint: "Tanlangan ishlar · 2023 — 2025",
+    view: "Loyihani ko'rish",
+    all: "Keyingisi — sizning loyihangiz",
+    items: [
+      { name: "Zamin AI", cat: "AI platforma", year: "2025", desc: "Banklar uchun o'zbek tilida so'zlashuvchi AI yordamchi. RAG arxitekturasi, ovozli qo'ng'iroqlar va CRM integratsiyasi — operatorlar yuki 40% ga kamaydi.", stat: { v: "1.2M", l: "so'rov / oy" }, tags: ["LLM", "RAG", "Fintech"] },
+      { name: "Orzu Market", cat: "E-commerce", year: "2024", desc: "Kuniga yuz minglab buyurtmani ko'taradigan highload marketplace. Real-time qidiruv, aqlli tavsiyalar va 300 ms dan tez ochiladigan sahifalar.", stat: { v: "500K+", l: "faol xaridor" }, tags: ["Next.js", "Highload", "Payments"] },
+      { name: "Shifo24", cat: "HealthTech", year: "2024", desc: "Telemeditsina platformasi: video-konsultatsiyalar, elektron retseptlar va navbatsiz shifokor qabuli — barchasi bitta ilovada.", stat: { v: "200+", l: "klinika" }, tags: ["Mobile", "WebRTC", "Telemed"] },
+      { name: "Sarbon TMS", cat: "Logistika", year: "2023", desc: "Yuk tashish kompaniyalari uchun boshqaruv tizimi: GPS-monitoring, AI asosida marshrut optimizatsiyasi va avtomatik hujjat aylanmasi.", stat: { v: "8K+", l: "transport birligi" }, tags: ["ERP", "GPS", "AI Routing"] },
+      { name: "Bilim+", cat: "EdTech", year: "2023", desc: "Maktab va o'quv markazlari uchun LMS: interaktiv darslar, ota-onalar uchun hisobotlar va gamifikatsiyalangan testlar.", stat: { v: "120K", l: "o'quvchi" }, tags: ["LMS", "Mobile", "Gamification"] },
     ],
   },
   about: {
@@ -104,10 +128,10 @@ const en: Dict = {
   nav: {
     menu: "Menu",
     close: "Close",
-    links: ["Services", "Manifesto", "Process", "Contact"],
+    links: ["Services", "Projects", "Manifesto", "Process", "Contact"],
     cta: "Start a project",
   },
-  menu: { contact: "Contact", language: "Language", socials: "Socials" },
+  menu: { contact: "Contact", language: "Language", socials: "Socials", theme: "Theme" },
   hero: {
     eyebrow: "IT & AI STUDIO — TASHKENT",
     l1: "Engineering",
@@ -135,6 +159,20 @@ const en: Dict = {
       { title: "Cloud & DevOps", desc: "Automated infrastructure, CI/CD and 99.9% uptime. Your product stays stable under any load.", tags: ["AWS", "Kubernetes", "CI/CD"] },
       { title: "Cybersecurity", desc: "Security audits, penetration testing and digital asset protection. We eliminate threats before they materialize.", tags: ["Pentest", "Audit", "Defense"] },
       { title: "IT Consulting", desc: "Technology strategy, architecture decisions and expert guidance through digital transformation.", tags: ["Strategy", "Architecture", "Audit"] },
+    ],
+  },
+  projects: {
+    label: "Projects",
+    title: "Selected works",
+    hint: "Featured case studies · 2023 — 2025",
+    view: "View case",
+    all: "Yours could be next",
+    items: [
+      { name: "Zamin AI", cat: "AI Platform", year: "2025", desc: "An Uzbek-speaking AI assistant for banks. RAG architecture, voice calls and CRM integration — operator workload cut by 40%.", stat: { v: "1.2M", l: "requests / mo" }, tags: ["LLM", "RAG", "Fintech"] },
+      { name: "Orzu Market", cat: "E-commerce", year: "2024", desc: "A high-load marketplace handling hundreds of thousands of orders daily. Real-time search, smart recommendations and sub-300 ms pages.", stat: { v: "500K+", l: "active buyers" }, tags: ["Next.js", "Highload", "Payments"] },
+      { name: "Shifo24", cat: "HealthTech", year: "2024", desc: "A telemedicine platform: video consultations, e-prescriptions and queue-free doctor appointments — all in one app.", stat: { v: "200+", l: "clinics" }, tags: ["Mobile", "WebRTC", "Telemed"] },
+      { name: "Sarbon TMS", cat: "Logistics", year: "2023", desc: "A management system for freight companies: GPS monitoring, AI-driven route optimization and automated document flow.", stat: { v: "8K+", l: "vehicles" }, tags: ["ERP", "GPS", "AI Routing"] },
+      { name: "Bilim+", cat: "EdTech", year: "2023", desc: "An LMS for schools and learning centers: interactive lessons, parent reports and gamified assessments.", stat: { v: "120K", l: "students" }, tags: ["LMS", "Mobile", "Gamification"] },
     ],
   },
   about: {
@@ -172,10 +210,10 @@ const ru: Dict = {
   nav: {
     menu: "Меню",
     close: "Закрыть",
-    links: ["Услуги", "Манифест", "Процесс", "Контакты"],
+    links: ["Услуги", "Проекты", "Манифест", "Процесс", "Контакты"],
     cta: "Начать проект",
   },
-  menu: { contact: "Контакты", language: "Язык", socials: "Соцсети" },
+  menu: { contact: "Контакты", language: "Язык", socials: "Соцсети", theme: "Тема" },
   hero: {
     eyebrow: "IT & AI STUDIO — ТАШКЕНТ",
     l1: "Создаём",
@@ -203,6 +241,20 @@ const ru: Dict = {
       { title: "Cloud и DevOps", desc: "Автоматизированная инфраструктура, CI/CD и 99.9% uptime. Ваш продукт стабилен под любой нагрузкой.", tags: ["AWS", "Kubernetes", "CI/CD"] },
       { title: "Кибербезопасность", desc: "Аудит безопасности, пентесты и защита цифровых активов. Устраняем угрозы до их появления.", tags: ["Pentest", "Аудит", "Защита"] },
       { title: "IT-консалтинг", desc: "Технологическая стратегия, выбор архитектуры и экспертное сопровождение цифровой трансформации.", tags: ["Стратегия", "Архитектура", "Аудит"] },
+    ],
+  },
+  projects: {
+    label: "Проекты",
+    title: "Наши проекты",
+    hint: "Избранные кейсы · 2023 — 2025",
+    view: "Смотреть кейс",
+    all: "Следующим будет ваш",
+    items: [
+      { name: "Zamin AI", cat: "AI-платформа", year: "2025", desc: "AI-ассистент для банков, говорящий на узбекском. RAG-архитектура, голосовые звонки и интеграция с CRM — нагрузка на операторов снижена на 40%.", stat: { v: "1.2M", l: "запросов / мес" }, tags: ["LLM", "RAG", "Fintech"] },
+      { name: "Orzu Market", cat: "E-commerce", year: "2024", desc: "Высоконагруженный маркетплейс, обрабатывающий сотни тысяч заказов в день. Real-time поиск, умные рекомендации и страницы быстрее 300 мс.", stat: { v: "500K+", l: "покупателей" }, tags: ["Next.js", "Highload", "Payments"] },
+      { name: "Shifo24", cat: "HealthTech", year: "2024", desc: "Платформа телемедицины: видеоконсультации, электронные рецепты и приём врача без очередей — всё в одном приложении.", stat: { v: "200+", l: "клиник" }, tags: ["Mobile", "WebRTC", "Telemed"] },
+      { name: "Sarbon TMS", cat: "Логистика", year: "2023", desc: "Система управления для грузоперевозчиков: GPS-мониторинг, AI-оптимизация маршрутов и автоматический документооборот.", stat: { v: "8K+", l: "единиц транспорта" }, tags: ["ERP", "GPS", "AI Routing"] },
+      { name: "Bilim+", cat: "EdTech", year: "2023", desc: "LMS для школ и учебных центров: интерактивные уроки, отчёты для родителей и геймифицированные тесты.", stat: { v: "120K", l: "учеников" }, tags: ["LMS", "Mobile", "Gamification"] },
     ],
   },
   about: {

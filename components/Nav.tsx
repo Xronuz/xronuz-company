@@ -3,11 +3,28 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLang, LANGS } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 
-const SECTION_IDS = ["#services", "#manifesto", "#process", "#contact"];
+const SECTION_IDS = ["#services", "#projects", "#manifesto", "#process", "#contact"];
+
+function ThemeIcon({ dark }: { dark: boolean }) {
+  return dark ? (
+    // sun — switch to light
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.4" />
+      <path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8" />
+    </svg>
+  ) : (
+    // moon — switch to dark
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20.5 14.2A8.6 8.6 0 0 1 9.8 3.5a8.6 8.6 0 1 0 10.7 10.7Z" />
+    </svg>
+  );
+}
 
 export default function Nav() {
   const { t, lang, setLang } = useLang();
+  const { theme, toggle, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -24,6 +41,14 @@ export default function Nav() {
           Xronuz<span className="dot">.</span>
         </a>
         <div className="nav-right">
+          <button
+            className="nav-theme"
+            onClick={toggle}
+            aria-label={theme === "dark" ? "Light mode" : "Dark mode"}
+            title={theme === "dark" ? "Light mode" : "Dark mode"}
+          >
+            <ThemeIcon dark={theme === "dark"} />
+          </button>
           <div className="nav-langs">
             {LANGS.map((l) => (
               <button
@@ -110,6 +135,20 @@ export default function Nav() {
                         onClick={() => setLang(l)}
                       >
                         {l.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="menu-aside-block">
+                  <h4 className="mono-label">{t.menu.theme}</h4>
+                  <div className="menu-langs">
+                    {(["dark", "light"] as const).map((m) => (
+                      <button
+                        key={m}
+                        className={`menu-lang ${theme === m ? "active" : ""}`}
+                        onClick={() => setTheme(m)}
+                      >
+                        {m === "dark" ? "DARK" : "LIGHT"}
                       </button>
                     ))}
                   </div>

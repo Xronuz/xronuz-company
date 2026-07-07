@@ -20,7 +20,7 @@ export default function CTA() {
         <span></span>
       </div>
 
-      <span className="mono-label">04 / {t.cta.label}</span>
+      <span className="mono-label">05 / {t.cta.label}</span>
 
       <h2 className="cta-title" key={lang}>
         <span className="row">

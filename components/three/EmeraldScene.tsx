@@ -1,11 +1,40 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
+import { useTheme } from "@/lib/theme";
 
-function ParticleSphere() {
+// additive blending glows on dark but washes out on light —
+// light mode uses normal blending with deeper emeralds
+const PALETTE = {
+  dark: {
+    sphere: "#34e2a0",
+    ring: "#1f8f68",
+    wire: "#2ad391",
+    core: "#5cf5bb",
+    blending: THREE.AdditiveBlending,
+    sphereOpacity: 0.85,
+    ringOpacity: 0.6,
+    wireOpacity: 0.16,
+    coreOpacity: 0.35,
+  },
+  light: {
+    sphere: "#0b7a52",
+    ring: "#0a6647",
+    wire: "#0e8f60",
+    core: "#075e40",
+    blending: THREE.NormalBlending,
+    sphereOpacity: 0.75,
+    ringOpacity: 0.5,
+    wireOpacity: 0.22,
+    coreOpacity: 0.45,
+  },
+} as const;
+
+function ParticleSphere({ mode }: { mode: "dark" | "light" }) {
+  const c = PALETTE[mode];
   const group = useRef<THREE.Group>(null!);
   const inner = useRef<THREE.Mesh>(null!);
   const outerRing = useRef<THREE.Points>(null!);
@@ -62,51 +91,76 @@ function ParticleSphere() {
       <Points positions={spherePts} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#34e2a0"
+          color={c.sphere}
           size={0.028}
           sizeAttenuation
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
-          opacity={0.85}
+          blending={c.blending}
+          opacity={c.sphereOpacity}
         />
       </Points>
       <Points ref={outerRing} positions={ringPts} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#1f8f68"
+          color={c.ring}
           size={0.02}
           sizeAttenuation
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
-          opacity={0.6}
+          blending={c.blending}
+          opacity={c.ringOpacity}
         />
       </Points>
       <mesh ref={inner}>
         <icosahedronGeometry args={[1.45, 1]} />
         <meshBasicMaterial
           wireframe
-          color="#2ad391"
+          color={c.wire}
           transparent
-          opacity={0.16}
+          opacity={c.wireOpacity}
         />
       </mesh>
       <mesh>
         <icosahedronGeometry args={[0.62, 0]} />
-        <meshBasicMaterial wireframe color="#5cf5bb" transparent opacity={0.35} />
+        <meshBasicMaterial wireframe color={c.core} transparent opacity={c.coreOpacity} />
       </mesh>
     </group>
   );
 }
 
 export default function EmeraldScene() {
+  const holder = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(true);
+  const { theme } = useTheme();
+
+  // stop the render loop while the hero is off-screen or the tab is hidden —
+  // otherwise the GPU keeps drawing every frame and the rest of the page janks
+  useEffect(() => {
+    const el = holder.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting && !document.hidden),
+      { rootMargin: "10% 0px" }
+    );
+    io.observe(el);
+    const onVis = () => setActive(!document.hidden);
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
+    };
+  }, []);
+
   return (
-    <Canvas
-      camera={{ position: [0, 0, 7.2], fov: 42 }}
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      style={{ position: "absolute", inset: 0 }}
-    >
-      <ParticleSphere />
-    </Canvas>
+    <div ref={holder} style={{ position: "absolute", inset: 0 }}>
+      <Canvas
+        camera={{ position: [0, 0, 7.2], fov: 42 }}
+        dpr={[1, 1.5]}
+        frameloop={active ? "always" : "never"}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        style={{ position: "absolute", inset: 0 }}
+      >
+        <ParticleSphere mode={theme} />
+      </Canvas>
+    </div>
   );
 }

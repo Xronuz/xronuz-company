@@ -18,7 +18,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="mono-label">{t.footer.nav}</h4>
             {t.nav.links.map((label, i) => (
-              <a key={label} href={["#services", "#manifesto", "#process", "#contact"][i]}>
+              <a key={label} href={["#services", "#projects", "#manifesto", "#process", "#contact"][i]}>
                 {label}
               </a>
             ))}

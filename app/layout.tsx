@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import type { Theme } from "@/lib/theme";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk" });
@@ -27,13 +29,23 @@ export const viewport: Viewport = {
   themeColor: "#04120c",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // theme lives in a cookie so the server renders the correct data-theme
+  // directly — no flash of the wrong theme and no hydration mismatch
+  const theme: Theme =
+    (await cookies()).get("xronuz-theme")?.value === "light" ? "light" : "dark";
+
   return (
-    <html lang="uz" className={`${inter.variable} ${grotesk.variable} ${mono.variable}`}>
+    <html
+      lang="uz"
+      className={`${inter.variable} ${grotesk.variable} ${mono.variable}`}
+      data-theme={theme === "light" ? "light" : undefined}
+      suppressHydrationWarning
+    >
       <body>
-        <Providers>{children}</Providers>
+        <Providers initialTheme={theme}>{children}</Providers>
       </body>
     </html>
   );
